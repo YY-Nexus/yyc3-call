@@ -766,10 +766,10 @@ export async function uploadFile(file: File) {
 
 ## 📞 联系我们
 
-- **官网**: https://yyc3.com
+- **官网**: https://call.mymgmt.cn
 - **邮箱**: admin@0379.email
 - **微信**: YYC3_AI
-- **GitHub**: https://github.com/yourusername/yyc3-ai-calling
+- **GitHub**: [https://github.com/YY-Nexus/yyc3-call.git](https://github.com/YY-Nexus/yyc3-call.git)
 
 ---
 
@@ -798,13 +798,9 @@ Made with ❤️ by YYC³ Team
 
 Your project is live at:
 
-**[https://vercel.com/95558/v0-zy-intelligent-customer-care-ce](https://vercel.com/95558/v0-zy-intelligent-customer-care-ce)**
+**[https://call.mymgmt.cn]
 
 ## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/projects/doU2j0XKhcv](https://v0.app/chat/projects/doU2j0XKhcv)**
 
 ## How It Works
 
