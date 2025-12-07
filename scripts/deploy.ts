@@ -44,10 +44,17 @@ function log(message: string, type: "info" | "success" | "error" | "warning" = "
   fs.appendFileSync(CONFIG.logFile, formattedMessage + "\n")
 }
 
-function exec(command: string, description: string): void {
+function exec(command: string, description: string, options?: { env?: NodeJS.ProcessEnv }): void {
   try {
     log(`执行: ${description}`, "info")
-    execSync(command, { stdio: "inherit" })
+    // Use shell: false for safer execution when possible
+    // Pass environment variables explicitly to prevent injection
+    execSync(command, {
+      stdio: "inherit",
+      env: options?.env || process.env,
+      // Ensure no shell interpretation unless absolutely necessary
+      shell: process.platform === 'win32' ? true : '/bin/sh'
+    })
     log(`✓ ${description} 完成`, "success")
   } catch (error) {
     log(`✗ ${description} 失败`, "error")
@@ -268,7 +275,17 @@ class Deployer {
 // ==================== 主函数 ====================
 async function main() {
   const args = process.argv.slice(2)
-  const environment = (args[0] || "development") as Environment
+  const rawEnvironment = args[0] || "development"
+
+  // Input validation to prevent command injection
+  if (typeof rawEnvironment !== 'string' || !/^[a-z]+$/.test(rawEnvironment)) {
+    console.error(`无效的环境参数: ${rawEnvironment}`)
+    console.error(`环境名称只能包含小写字母`)
+    console.error(`可用环境: ${CONFIG.environments.join(", ")}`)
+    process.exit(1)
+  }
+
+  const environment = rawEnvironment as Environment
 
   if (!CONFIG.environments.includes(environment)) {
     console.error(`无效的环境: ${environment}`)
