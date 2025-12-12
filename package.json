@@ -69,7 +69,7 @@
     "fs": "latest",
     "input-otp": "latest",
     "lucide-react": "^0.454.0",
-    "next": "15.4.8",
+    "next": "15.4.9",
     "next-auth": "^5.0.0-beta.30",
     "next-themes": "latest",
     "react": "^18.3.1",
